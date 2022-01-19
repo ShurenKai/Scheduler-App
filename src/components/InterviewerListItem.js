@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import "components/InterviewerListItem.scss"
 
 export default function InterviewerListItem(props){
-  // const [ interviewer, setInterviewer ] = useState(0)
   const clicker = () => props.setInterviewer(props.name);
 
   const interviewerClass = classNames("interviewers__item", {
