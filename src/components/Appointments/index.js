@@ -1,6 +1,8 @@
 import React from "react";
 import "components/Appointments/styles.scss"
 
+import Header from "components/Appointments/Header"
+
 
 export default function Appointment(props){
   let input = ''
