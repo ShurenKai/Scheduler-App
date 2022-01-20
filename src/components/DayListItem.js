@@ -4,26 +4,25 @@ import classNames from "classnames";
 import "components/DayListItem.scss";
 
 export function formatSpots(num) {
-  let final = '';
-  if (num > 1){
-    final = num + ' spots remaining'
+  let final = "";
+  if (num > 1) {
+    final = num + " spots remaining";
   } else if (num) {
-    final = num + ' spot remaining'
+    final = num + " spot remaining";
   } else {
-    final = 'no spots remaining'
+    final = "no spots remaining";
   }
-  return final
-};
+  return final;
+}
 
 export default function DayListItem(props) {
-
   const dayClass = classNames("day-list__item", {
-    "--selected": props.selected,
-    "--full": props.spots === 0
+    "day-list__item--selected": props.selected,
+    "day-list__item--full": props.spots === 0,
   });
 
   return (
-    <li onClick={() => props.setDay(props.name)} className={ dayClass }>
+    <li onClick={() => props.setDay(props.name)} className={dayClass}>
       <h2 className="text--regular">{props.name}</h2>
       <h3 className="text--light">{formatSpots(props.spots)}</h3>
     </li>
@@ -34,14 +33,14 @@ export default function DayListItem(props) {
 // The <h2> should display the day name
 // The <h3> should display the spots remaining for a day
 
-  // const formatSpots = (props) => {
-  //   let final = '';
-  //   if (props.spots > 1){
-  //     final = props.spots + ' spots remaining'
-  //   } else if (props.spots) {
-  //     final = props.spots + ' spot remaining'
-  //   } else {
-  //     final = 'no spots remaining'
-  //   }
-  //   return final
-  // };
+// const formatSpots = (props) => {
+//   let final = '';
+//   if (props.spots > 1){
+//     final = props.spots + ' spots remaining'
+//   } else if (props.spots) {
+//     final = props.spots + ' spot remaining'
+//   } else {
+//     final = 'no spots remaining'
+//   }
+//   return final
+// };
