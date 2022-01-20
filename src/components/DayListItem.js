@@ -28,19 +28,3 @@ export default function DayListItem(props) {
     </li>
   );
 }
-
-// The <li> represents the entire day item
-// The <h2> should display the day name
-// The <h3> should display the spots remaining for a day
-
-// const formatSpots = (props) => {
-//   let final = '';
-//   if (props.spots > 1){
-//     final = props.spots + ' spots remaining'
-//   } else if (props.spots) {
-//     final = props.spots + ' spot remaining'
-//   } else {
-//     final = 'no spots remaining'
-//   }
-//   return final
-// };

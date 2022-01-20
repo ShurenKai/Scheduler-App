@@ -8,9 +8,11 @@ export default function InterviewerList(props) {
     return (
       <InterviewerListItem
         name={person.name}
+        id={person.id}
         avatar={person.avatar}
         selected={person.id === props.value}
-        onChange={() => props.onChange(props.id)}
+        onChange={props.onChange}
+        setInterviewer={() => props.onChange(person.id)}
         key={person.id}
       />
     );
@@ -18,7 +20,7 @@ export default function InterviewerList(props) {
   return (
     <section className="interviewers">
       <h4 className="interviewers__header text--light">Interviewer</h4>
-      <ul>{interview}</ul>
+      <ul className="interviewers__list">{interview}</ul>
     </section>
   );
 }

@@ -6,10 +6,6 @@ export default function Form(props) {
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
 
-  const onChange = (e) => {
-    setStudent(e.target.value);
-  };
-
   const reset = () => {
     setStudent("");
     setInterviewer("");
@@ -17,6 +13,7 @@ export default function Form(props) {
 
   const cancel = () => {
     reset();
+    // eslint-disable-next-line no-lone-blocks
     {
       props.onCancel();
     }
@@ -25,20 +22,20 @@ export default function Form(props) {
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
-        <form autoComplete="off">
+        <form autoComplete="off" onSubmit={(event) => event.preventDefault()}>
           <input
             className="appointment__create-input text--semi-bold"
             name=""
             type="text"
             placeholder="Enter Student Name"
-            onChange={onChange}
+            onChange={(e) => setStudent(e.target.value)}
             value={student}
           />
         </form>
         <InterviewerList
           interviewers={props.interviewers}
-          interviewer={interviewer}
-          onChange={setInterviewer}
+          onChange={(id) => setInterviewer(id)}
+          value={interviewer}
         />
       </section>
       <section className="appointment__card-right">
