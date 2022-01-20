@@ -14,7 +14,7 @@ export default function Appointment(props) {
           interviewer={props.interview.interviewer}
         />
       )}
-      {props.interview === false && <Empty />}
+      {!props.interview && <Empty />}
     </article>
   );
 }

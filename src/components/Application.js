@@ -5,7 +5,7 @@ import DayList from "./DayList";
 import Appointment from "./Appointments";
 import "components/Appointments";
 
-const days = [
+const theDays = [
   {
     id: 1,
     name: "Monday",
@@ -72,7 +72,7 @@ const appointments = [
 // ));
 
 export default function Application(props) {
-  const [days, setDay] = useState("Monday");
+  const [day, setDay] = useState("Monday");
   const apps = appointments.map((app) => <Appointment key={app.id} {...app} />);
   return (
     <main className="layout">
@@ -85,7 +85,7 @@ export default function Application(props) {
 
         <hr className="sidebar_separator sidebar--centered" />
         <nav className="sidebar__menu">
-          <DayList days={days} value={days} onChange={setDay} />
+          <DayList days={theDays} value={day} onChange={setDay} />
         </nav>
 
         <img
@@ -94,7 +94,10 @@ export default function Application(props) {
           alt="Lighthouse Labs"
         />
       </section>
-      <section className="schedule">{apps}</section>
+      <section className="schedule">
+        {apps}
+        <Appointment key="last" time="5PM" />
+      </section>
     </main>
   );
 }
