@@ -1,27 +1,44 @@
-import React, { useState, useEffect } from "react";
-import { useVisualMode } from "../hooks/useVisualMode";
+import { useState } from "react";
 
 export default function useVisualMode(initial) {
-  const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);
 
-  const transition = (m, bool) => {
-    setMode(m);
-    history.push(m);
-    if (bool) {
-      let newHist = `Transition to ${m} by REPLACING ${mode}`;
-      let joined = history.join(",");
-      joined = joined.replace(mode, m);
-      setHistory(joined.split(","));
-      console.log(newHist);
+  const transition = (newMode, replace = false) => {
+    const newHist = [...history];
+    // note: not considering stale state yet
+    //////////////////////////
+    // add prev later !!!!! //
+    //////////////////////////
+
+    console.log("Transition Called");
+
+    if (replace) {
+      newHist.pop();
     }
+
+    newHist.push(newMode);
+    setHistory(newHist);
   };
 
+  // note: not considering stale state yet
+  ////////////////////
+  // add prev !!!!! //
+  ////////////////////
+
   const back = () => {
-    const fin = history.findIndex((f) => f === mode);
-    setMode(history[fin - 1]);
-    console.log(history);
+    if (history.length < 2) {
+      return;
+    }
+    const newHist = [...history];
+    newHist.pop();
+    setHistory(newHist);
   };
+
+  const mode = history[history.length - 1];
 
   return { mode, transition, back };
 }
+
+// add new dish to stack
+// add dish to top
+// replace top dish with new dish

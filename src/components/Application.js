@@ -45,8 +45,6 @@ export default function Application(props) {
       });
   }, []);
 
-  console.log(state.appointments);
-
   // const dailyAppointments = [];
   // const interview = {};
 
