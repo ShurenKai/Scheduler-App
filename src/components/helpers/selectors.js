@@ -6,32 +6,27 @@ function getAppointmentsForDay(state, day) {
 }
 
 function getInterview(state, interview) {
-  if (interview == null) {
+  // input
+  // state.appointment[3].interview
+  // interview: { student: "Archie Cohen", interviewer: 2 }
+  // expected output
+  // {student: name interviewer:{id: 1 name: baba avatar: why.img}} OR null
+
+  if (!interview) {
     return null;
   }
-  let values = Object.values(state.appointments);
-  let result;
 
-  for (let val of values) {
-    if (val.interview == null) {
-      result = null;
-    } else if (val.interview !== null) {
-      if (val.interview.interviewer === interview.interviewer) {
-        val.interview.interviewer = state.interviewers[interview.interviewer];
-        return val.interview;
-      } else if (
-        (val.interview.interviewer !== interview.interviewer) &
-        (val.id === values.length)
-      ) {
-        return null;
-      } else {
-        continue;
-      }
-    }
-  }
-  return result;
+  return {
+    student: interview.student,
+    interviewer: { ...state.interviewers[interview.interviewer] },
+  };
 }
 
-export { getAppointmentsForDay, getInterview };
+function getInterviewersForDay(state, day) {
+  let filt = state.days.filter((x) => x.name === day);
+  return filt.length === 0
+    ? []
+    : filt[0].interviewers.map((m) => state.interviewers[m]);
+}
 
-// val = { id: 1, time: '12pm', interview: null }
+export { getAppointmentsForDay, getInterview, getInterviewersForDay };

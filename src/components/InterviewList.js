@@ -4,6 +4,9 @@ import InterviewerListItem from "./InterviewerListItem";
 import "./InterviewList.scss";
 
 export default function InterviewerList(props) {
+  if (!props.interviewers) {
+    return <span></span>;
+  }
   const interview = props.interviewers.map((person) => {
     return (
       <InterviewerListItem

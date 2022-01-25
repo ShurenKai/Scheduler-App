@@ -10,8 +10,6 @@ export default function useVisualMode(initial) {
     // add prev later !!!!! //
     //////////////////////////
 
-    console.log("Transition Called");
-
     if (replace) {
       newHist.pop();
     }
