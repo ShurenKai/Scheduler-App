@@ -7,7 +7,9 @@ import useVisualMode from "hooks/useVisualMode";
 import Form from "./Form";
 import Status from "./Status";
 import Confirm from "./Confirm";
-
+import Error from "./Error";
+// props will be from Application.js
+// key, id, time, name, interview, interviewers, book interview, cancel interview, and edit interview
 export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? "SHOW" : "EMPTY"
@@ -19,7 +21,10 @@ export default function Appointment(props) {
       interviewer,
     };
     transition("SAVING");
-    props.bookInterview(props.id, interview).then(() => transition("SHOW"));
+    props
+      .bookInterview(props.id, interview)
+      .then(() => transition("SHOW"))
+      .catch((err) => transition("ERROR_SAVE", true));
   };
 
   const del = (id) => {
@@ -27,7 +32,11 @@ export default function Appointment(props) {
       transition("CONFIRM");
     } else if (mode === "CONFIRM") {
       transition("DELETE");
-      props.cancelInterview(props.id).then(() => transition("EMPTY"));
+      props
+        .cancelInterview(props.id)
+        .then(() => transition("EMPTY"))
+        .catch((err) => transition("ERROR_DELETE"));
+      console.log(".here");
     } else {
       console.log("NOPE");
     }
@@ -50,6 +59,8 @@ export default function Appointment(props) {
     }
   };
 
+  console.log("Indexed props", props);
+
   return (
     <article className="appointment">
       <Header time={props.time} />
@@ -65,7 +76,6 @@ export default function Appointment(props) {
       )}
       {mode === "CREATE" && (
         <Form
-          name={props.name}
           value={props.value}
           interviewers={props.interviewers}
           onCancel={back}
@@ -75,17 +85,24 @@ export default function Appointment(props) {
       {mode === "SAVING" && <Status message="Keeping your data in check :3c" />}
       {mode === "DELETE" && <Status message="Go away ;-;" />}
       {mode === "CONFIRM" && (
-        <Confirm message="Are you sure you want this to die?" onConfirm={del} />
+        <Confirm
+          message="Are you sure you want this to die?"
+          onConfirm={del}
+          onCancel={back}
+        />
       )}
       {mode === "EDIT" && (
         <Form
-          name={props.name}
-          value={props.student}
+          value={props.interview.student}
           interviewers={props.interviewers}
           onCancel={back}
           onSave={save}
         />
       )}
+      {mode === "ERROR_SAVE" && <Error onClose={() => transition("SAVING")} />}
+      {mode === "ERROR_DELETE" && <Error onClose={() => transition("SHOW")} />}
     </article>
   );
 }
+
+// onClose={transition("SHOW")}

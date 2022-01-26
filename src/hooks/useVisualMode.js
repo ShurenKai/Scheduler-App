@@ -9,13 +9,12 @@ export default function useVisualMode(initial) {
     //////////////////////////
     // add prev later !!!!! //
     //////////////////////////
-
+    console.log(newMode);
     if (replace) {
       newHist.pop();
     }
-
     newHist.push(newMode);
-    setHistory(newHist);
+    setHistory((prev) => [...prev, newMode]);
   };
 
   // note: not considering stale state yet

@@ -10,26 +10,11 @@ import {
   getInterviewersForDay,
   getInterview,
 } from "./helpers/selectors";
+import useApplicationData from "hooks/useApplicationData";
 
-export default function Application(props) {
-  const [state, setState] = useState({
-    day: "Monday",
-    days: [],
-    appointments: {
-      id: null,
-      time: "",
-      interview: {
-        id: null,
-        name: "",
-        avatar: "",
-        interviewer: null,
-      },
-    },
-    interviewers: {},
-  });
-  const setDay = (day) => {
-    setState({ ...state, day });
-  };
+export default function Application() {
+  const { state, setState, setDay, bookInterview, cancelInterview } =
+    useApplicationData();
 
   useEffect(() => {
     Promise.all([
@@ -49,50 +34,15 @@ export default function Application(props) {
       });
   }, []);
 
-  const bookInterview = (id, interview) => {
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview },
-    };
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment,
-    };
-
-    return axios
-      .put(`http://localhost:8001/api/appointments/${id}`, appointment)
-      .then((res) => {
-        setState({ ...state, appointments });
-        return res;
-      })
-      .catch((err) => {
-        console.log("RIP", err);
-      });
-  };
+  //books an interview with a new id and interviewer (if interviewer is selected)
 
   const dailyAppointments = getAppointmentsForDay(state, state.day);
+
+  // returns array of appointments based on day
   const interviewers = getInterviewersForDay(state, state.day);
+  // returns an array of interviewers based on day
 
-  const cancelInterview = (id) => {
-    const appointment = {
-      ...state.appointments[id],
-      interview: null,
-    };
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment,
-    };
-
-    return axios
-      .delete(`http://localhost:8001/api/appointments/${id}`, appointment)
-      .then((res) => {
-        setState({ ...state, appointments });
-        return res;
-      })
-      .catch((err) => {
-        console.log("cancelling canceled ", err);
-      });
-  };
+  //deletes an interview by id
 
   const editInterview = (id, interview) => {
     const appointment = {
@@ -113,6 +63,7 @@ export default function Application(props) {
         console.log("cancelling canceled ", err);
       });
   };
+  //edits an interview by id from list of interviews
 
   return (
     <main className="layout">
