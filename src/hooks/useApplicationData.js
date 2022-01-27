@@ -21,6 +21,23 @@ export default function useApplicationData() {
     setState({ ...state, day });
   };
 
+  const spotsRemaining = (appointments) => {
+    const newDays = [...state.days];
+
+    for (let newDay of newDays) {
+      if (newDay.name === state.day) {
+        newDay.spots = 0;
+        for (let appointId of newDay.appointments) {
+          if (appointments[appointId].interview === null) {
+            newDay.spots++;
+          }
+        }
+      }
+    }
+
+    return newDays;
+  };
+
   const bookInterview = (id, interview) => {
     const appointment = {
       ...state.appointments[id],
@@ -34,11 +51,9 @@ export default function useApplicationData() {
     return axios
       .put(`http://localhost:8001/api/appointments/${id}`, appointment)
       .then((res) => {
-        setState({ ...state, appointments });
+        let newDays = spotsRemaining(appointments);
+        setState({ ...state, appointments, days: newDays });
         return res;
-      })
-      .catch((err) => {
-        console.log("RIP", err);
       });
   };
 
@@ -55,7 +70,8 @@ export default function useApplicationData() {
     return axios
       .delete(`http://localhost:8001/api/appointments/${id}`, appointment)
       .then((res) => {
-        setState({ ...state, appointments });
+        let newDays = spotsRemaining(appointments);
+        setState({ ...state, appointments, days: newDays });
         return res;
       });
   };

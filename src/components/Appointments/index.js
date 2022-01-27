@@ -28,6 +28,7 @@ export default function Appointment(props) {
   };
 
   const del = (id) => {
+    console.log(props.id);
     if (mode !== "CONFIRM") {
       transition("CONFIRM");
     } else if (mode === "CONFIRM") {
@@ -36,7 +37,6 @@ export default function Appointment(props) {
         .cancelInterview(props.id)
         .then(() => transition("EMPTY"))
         .catch((err) => transition("ERROR_DELETE"));
-      console.log(".here");
     } else {
       console.log("NOPE");
     }
@@ -99,8 +99,18 @@ export default function Appointment(props) {
           onSave={save}
         />
       )}
-      {mode === "ERROR_SAVE" && <Error onClose={() => transition("SAVING")} />}
-      {mode === "ERROR_DELETE" && <Error onClose={() => transition("SHOW")} />}
+      {mode === "ERROR_SAVE" && (
+        <Error
+          message="Could not save appointment"
+          onClose={() => transition("SAVING")}
+        />
+      )}
+      {mode === "ERROR_DELETE" && (
+        <Error
+          message="Could not delete appointment"
+          onClose={() => transition("SHOW")}
+        />
+      )}
     </article>
   );
 }

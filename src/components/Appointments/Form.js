@@ -5,8 +5,7 @@ import InterviewerList from "components/InterviewList";
 export default function Form(props) {
   const [student, setStudent] = useState(props.value || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
-
-  console.log(props);
+  const [error, setError] = useState("");
 
   const reset = () => {
     setStudent("");
@@ -17,6 +16,7 @@ export default function Form(props) {
     reset();
     // eslint-disable-next-line no-lone-blocks
     {
+      setError("");
       props.onCancel();
     }
   };
@@ -27,13 +27,15 @@ export default function Form(props) {
         <form autoComplete="off" onSubmit={(event) => event.preventDefault()}>
           <input
             className="appointment__create-input text--semi-bold"
-            name="Willbur"
+            name=""
             type="text"
             placeholder="Enter Student Name"
             onChange={(e) => setStudent(e.target.value)}
             value={student}
+            data-testid="student-name-input"
           />
         </form>
+        <section className="appointment__validation">{error}</section>
         <InterviewerList
           interviewers={props.interviewers}
           onChange={(id) => setInterviewer(id)}
@@ -45,7 +47,17 @@ export default function Form(props) {
           <Button danger onClick={cancel}>
             Cancel
           </Button>
-          <Button confirm onClick={() => props.onSave(student, interviewer)}>
+          <Button
+            confirm
+            onClick={function validate() {
+              if (!student) {
+                setError("student name cannot be blank");
+                return;
+              }
+              setError("");
+              props.onSave(student, interviewer);
+            }}
+          >
             Save
           </Button>
         </section>

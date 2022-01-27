@@ -1,9 +1,9 @@
 import React from "react";
 import InterviewerListItem from "./InterviewerListItem";
-
+import PropTypes from "prop-types";
 import "./InterviewList.scss";
 
-export default function InterviewerList(props) {
+function InterviewerList(props) {
   if (!props.interviewers) {
     return <span></span>;
   }
@@ -20,6 +20,7 @@ export default function InterviewerList(props) {
       />
     );
   });
+
   return (
     <section className="interviewers">
       <h4 className="interviewers__header text--light">Interviewer</h4>
@@ -27,3 +28,10 @@ export default function InterviewerList(props) {
     </section>
   );
 }
+
+// eslint-disable-next-line react/no-typos
+InterviewerList.propTypes = {
+  interviewers: PropTypes.array.isRequired,
+};
+
+export default InterviewerList;

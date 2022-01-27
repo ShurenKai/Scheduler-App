@@ -4,36 +4,32 @@ export default function useVisualMode(initial) {
   const [history, setHistory] = useState([initial]);
 
   const transition = (newMode, replace = false) => {
-    const newHist = [...history];
+    // const newHist = [...history];
     // note: not considering stale state yet
     //////////////////////////
     // add prev later !!!!! //
     //////////////////////////
-    console.log(newMode);
-    if (replace) {
-      newHist.pop();
-    }
-    newHist.push(newMode);
-    setHistory((prev) => [...prev, newMode]);
-  };
 
-  // note: not considering stale state yet
-  ////////////////////
-  // add prev !!!!! //
-  ////////////////////
+    setHistory((prev) => {
+      const newHist = [...prev];
+      if (replace) {
+        newHist.pop();
+      }
+
+      return [...newHist, newMode];
+    });
+  };
 
   const back = () => {
     if (history.length < 2) {
       return;
     }
-    const newHist = [...history];
+    let newHist = [...history];
     newHist.pop();
     setHistory(newHist);
   };
 
-  const mode = history[history.length - 1];
-
-  return { mode, transition, back };
+  return { mode: history[history.length - 1], transition, back };
 }
 
 // add new dish to stack

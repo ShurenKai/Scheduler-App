@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 
 import "components/Application.scss";
@@ -32,7 +32,7 @@ export default function Application() {
       .catch((err) => {
         console.log("ya dun goofed: ", err);
       });
-  }, []);
+  }, [setState]);
 
   //books an interview with a new id and interviewer (if interviewer is selected)
 
