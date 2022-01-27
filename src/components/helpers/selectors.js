@@ -1,3 +1,7 @@
+///////////////////////////////////////////
+// Helper functions used in Appointments //
+///////////////////////////////////////////
+
 function getAppointmentsForDay(state, day) {
   let filt = state.days.filter((x) => x.name === day);
   return filt.length === 0
@@ -6,12 +10,6 @@ function getAppointmentsForDay(state, day) {
 }
 
 function getInterview(state, interview) {
-  // input
-  // state.appointment[3].interview
-  // interview: { student: "Archie Cohen", interviewer: 2 }
-  // expected output
-  // {student: name interviewer:{id: 1 name: baba avatar: why.img}} OR null
-
   if (!interview) {
     return null;
   }

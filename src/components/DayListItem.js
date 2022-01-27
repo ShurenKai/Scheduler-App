@@ -3,6 +3,10 @@ import classNames from "classnames";
 
 import "components/DayListItem.scss";
 
+//////////////////////////////////////////////
+// Counts spots and allows us to select day //
+//////////////////////////////////////////////
+
 export function formatSpots(num) {
   let final = "";
   if (num > 1) {

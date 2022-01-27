@@ -1,6 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
 
+//////////////////////////////////////////////////////////////////
+// Hook in order to use our Application data wherever we choose //
+//////////////////////////////////////////////////////////////////
+
 export default function useApplicationData() {
   const [state, setState] = useState({
     day: "Monday",

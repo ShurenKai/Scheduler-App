@@ -12,6 +12,10 @@ import {
 } from "./helpers/selectors";
 import useApplicationData from "hooks/useApplicationData";
 
+////////////////////////////////////////////////////////////////////////////////////
+// Application that is used to get the data (props) from API for other components //
+////////////////////////////////////////////////////////////////////////////////////
+
 export default function Application() {
   const { state, setState, setDay, bookInterview, cancelInterview } =
     useApplicationData();
@@ -34,15 +38,16 @@ export default function Application() {
       });
   }, [setState]);
 
-  //books an interview with a new id and interviewer (if interviewer is selected)
+  ///////////////////////////////////////////
+  // Where helper functions are being used //
+  ///////////////////////////////////////////
 
   const dailyAppointments = getAppointmentsForDay(state, state.day);
-
-  // returns array of appointments based on day
   const interviewers = getInterviewersForDay(state, state.day);
-  // returns an array of interviewers based on day
 
-  //deletes an interview by id
+  ////////////////////////////////
+  // Interview-editing function //
+  ////////////////////////////////
 
   const editInterview = (id, interview) => {
     const appointment = {
@@ -63,7 +68,6 @@ export default function Application() {
         console.log("cancelling canceled ", err);
       });
   };
-  //edits an interview by id from list of interviews
 
   return (
     <main className="layout">

@@ -1,15 +1,13 @@
 import { useState } from "react";
 
+///////////////////////////////////////////////////////////////////
+// Sets the mode states depending on which hook function is used //
+///////////////////////////////////////////////////////////////////
+
 export default function useVisualMode(initial) {
   const [history, setHistory] = useState([initial]);
 
   const transition = (newMode, replace = false) => {
-    // const newHist = [...history];
-    // note: not considering stale state yet
-    //////////////////////////
-    // add prev later !!!!! //
-    //////////////////////////
-
     setHistory((prev) => {
       const newHist = [...prev];
       if (replace) {
@@ -31,7 +29,3 @@ export default function useVisualMode(initial) {
 
   return { mode: history[history.length - 1], transition, back };
 }
-
-// add new dish to stack
-// add dish to top
-// replace top dish with new dish

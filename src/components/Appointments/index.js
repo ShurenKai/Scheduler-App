@@ -8,8 +8,11 @@ import Form from "./Form";
 import Status from "./Status";
 import Confirm from "./Confirm";
 import Error from "./Error";
-// props will be from Application.js
-// key, id, time, name, interview, interviewers, book interview, cancel interview, and edit interview
+
+////////////////////////////////////////////////////
+// Props for Appointment are given by Application //
+////////////////////////////////////////////////////
+
 export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? "SHOW" : "EMPTY"
@@ -60,6 +63,10 @@ export default function Appointment(props) {
   };
 
   console.log("Indexed props", props);
+
+  //////////////////////////////////////////////////////////////////////
+  // Uses other Appointment components on based the condition of mode //
+  //////////////////////////////////////////////////////////////////////
 
   return (
     <article className="appointment">
@@ -114,5 +121,3 @@ export default function Appointment(props) {
     </article>
   );
 }
-
-// onClose={transition("SHOW")}

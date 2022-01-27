@@ -3,6 +3,10 @@ import classNames from "classnames";
 
 import "./InterviewerListItem.scss";
 
+//////////////////////////////////////////////////////////
+// Determines whether or not an interviewer is selected //
+//////////////////////////////////////////////////////////
+
 export default function InterviewerListItem(props) {
   const interviewerClass = classNames("interviewers__item", {
     "interviewers__item--selected": props.selected,

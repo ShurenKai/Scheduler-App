@@ -3,6 +3,10 @@ import Button from "components/Button";
 
 import "components/Appointments/styles.scss";
 
+/////////////////////////////////////////////////////////////////////
+// Confirm screen if a user wants to delete or save an appointment //
+/////////////////////////////////////////////////////////////////////
+
 export default function Confirm(props) {
   return (
     <main className="appointment__card appointment__card--confirm">

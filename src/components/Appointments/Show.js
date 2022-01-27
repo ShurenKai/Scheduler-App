@@ -1,5 +1,9 @@
 import React from "react";
 
+////////////////////////////////////
+// Shows the created appointments //
+////////////////////////////////////
+
 export default function Show(props) {
   return (
     <main className="appointment__card appointment__card--show">
