@@ -68,7 +68,7 @@ But if I edited an appointment instead of creating and destroying a new one, I c
 - Storybook
 - Cypress
 
-### Dther dependencies
+### Other dependencies
 
 - "body-parser": "^1.18.3",
 - "cors": "^2.8.5",
