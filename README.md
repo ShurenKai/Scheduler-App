@@ -6,17 +6,17 @@ Install dependencies with `npm install`.
 
 Use `npm start` to initialize the app
 
-## Running Jest Test Framework
+## View
 
-```sh
-npm test
-```
-
-## Running Storybook Visual Testbed
-
-```sh
-npm run storybook
-```
+Once you've done the above, you should see this homepage
+![Windows Ver](https://github.com/ShurenKai/boilerplate/blob/master/docs/creation.png?raw=true)
+![DaysList](https://github.com/ShurenKai/boilerplate/blob/master/docs/dayslist.png?raw=true)
+![Delete confirm window](https://github.com/ShurenKai/boilerplate/blob/master/docs/delete.png?raw=true)
+![Post delete confirm](https://github.com/ShurenKai/boilerplate/blob/master/docs/deletedPage.png?raw=true)
+![Save without name](https://github.com/ShurenKai/boilerplate/blob/master/docs/denied.png?raw=true)
+![Edited state](https://github.com/ShurenKai/boilerplate/blob/master/docs/edited.png?raw=true)
+![Edit or Delete](https://github.com/ShurenKai/boilerplate/blob/master/docs/options.png?raw=true)
+![Spots remaining](https://github.com/ShurenKai/boilerplate/blob/master/docs/spots.png?raw=true)
 
 ### Functional Requirements
 
