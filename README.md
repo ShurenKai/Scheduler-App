@@ -1,5 +1,7 @@
 # Interview Scheduler
 
+Edited code by Cassie/Ren Chen
+
 ## Setup
 
 Install dependencies with `npm install`.
@@ -9,14 +11,33 @@ Use `npm start` to initialize the app
 ## View
 
 Once you've done the above, you should see this homepage
-![Windows Ver](https://github.com/ShurenKai/boilerplate/blob/master/docs/creation.png?raw=true)
+![Opened Scheduler](https://github.com/ShurenKai/boilerplate/blob/master/docs/openedPage.png?raw=true)
+
+To see any appointments, you'd want to select anything on the side by clicking a day!
 ![DaysList](https://github.com/ShurenKai/boilerplate/blob/master/docs/dayslist.png?raw=true)
-![Delete confirm window](https://github.com/ShurenKai/boilerplate/blob/master/docs/delete.png?raw=true)
-![Post delete confirm](https://github.com/ShurenKai/boilerplate/blob/master/docs/deletedPage.png?raw=true)
+
+Say, for instance, we selected Monday. We will be given a list of already created appointments or buttons we can use to make new ones
+![Monday view](https://github.com/ShurenKai/boilerplate/blob/master/docs/monday.png?raw=true)
+
+Once we press one of the + buttons, we are given a nice little window that gives you an option to choose an interviewer as well as an input form to enter your name.
+Now, if you don't input a name, you'll get this nice little error message. This will go away once you input a name and press save
 ![Save without name](https://github.com/ShurenKai/boilerplate/blob/master/docs/denied.png?raw=true)
-![Edited state](https://github.com/ShurenKai/boilerplate/blob/master/docs/edited.png?raw=true)
+![Enter a name](https://github.com/ShurenKai/boilerplate/blob/master/docs/editing.png?raw=true)
+
+So now I have an appointment with my name on it! But you'll also see that the spots remaining has changed to reference our changes to the day's appointments
+![Windows Ver](https://github.com/ShurenKai/boilerplate/blob/master/docs/creation.png?raw=true)
+
+Now if you hover over an appointment, you'd see (in the righthand bottom corner) some options of what you can do with the edit button
 ![Edit or Delete](https://github.com/ShurenKai/boilerplate/blob/master/docs/options.png?raw=true)
-![Spots remaining](https://github.com/ShurenKai/boilerplate/blob/master/docs/spots.png?raw=true)
+
+Lets say I wanted to delete an appointment and pressed the little trash can button, we would get to a confirmation message, asking if this is what we want
+![Delete confirm window](https://github.com/ShurenKai/boilerplate/blob/master/docs/delete.png?raw=true)
+
+If yes, then we're back to having 2 spots remaining on Monday
+![Post delete confirm](https://github.com/ShurenKai/boilerplate/blob/master/docs/deletedPage.png?raw=true)
+![Edited state](https://github.com/ShurenKai/boilerplate/blob/master/docs/edited.png?raw=true)
+
+But if I edited an appointment instead of creating and destroying a new one, I can just edit one to be a different name instead. it would be the same as the creation form that we opened earlier, only I can change the name and interviewers as I please - like if I wanted to edit all the names of the interviews, I would be free to do so. All the functionalities are listed below!
 
 ### Functional Requirements
 
