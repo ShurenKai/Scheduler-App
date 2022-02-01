@@ -62,8 +62,6 @@ export default function Appointment(props) {
     }
   };
 
-  console.log("Indexed props", props);
-
   //////////////////////////////////////////////////////////////////////
   // Uses other Appointment components on based the condition of mode //
   //////////////////////////////////////////////////////////////////////
@@ -107,10 +105,7 @@ export default function Appointment(props) {
         />
       )}
       {mode === "ERROR_SAVE" && (
-        <Error
-          message="Could not save appointment"
-          onClose={() => transition("SAVING")}
-        />
+        <Error message="Could not save appointment" onClose={back} />
       )}
       {mode === "ERROR_DELETE" && (
         <Error
