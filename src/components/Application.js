@@ -41,7 +41,7 @@ export default function Application() {
       [id]: appointment,
     };
     return axios
-      .patch(`http://localhost:8001/api/appointments/${id}`, appointment)
+      .patch(`/api/appointments/${id}`, appointment)
       .then((res) => {
         setState({ ...state, appointments });
         return res;

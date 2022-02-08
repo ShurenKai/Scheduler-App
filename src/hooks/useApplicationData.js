@@ -33,6 +33,7 @@ export default function useApplicationData() {
     ])
       .then((all) => {
         setState({
+          ...state,
           days: all[0].data,
           appointments: all[1].data,
           interviewers: all[2].data,
@@ -74,13 +75,11 @@ export default function useApplicationData() {
       [id]: appointment,
     };
 
-    return axios
-      .put(`http://localhost:8001/api/appointments/${id}`, appointment)
-      .then((res) => {
-        let newDays = spotsRemaining(appointments);
-        setState({ ...state, appointments, days: newDays });
-        return res;
-      });
+    return axios.put(`/api/appointments/${id}`, appointment).then((res) => {
+      let newDays = spotsRemaining(appointments);
+      setState({ ...state, appointments, days: newDays });
+      return res;
+    });
   };
 
   const cancelInterview = (id) => {
@@ -93,13 +92,11 @@ export default function useApplicationData() {
       [id]: appointment,
     };
 
-    return axios
-      .delete(`http://localhost:8001/api/appointments/${id}`, appointment)
-      .then((res) => {
-        let newDays = spotsRemaining(appointments);
-        setState({ ...state, appointments, days: newDays });
-        return res;
-      });
+    return axios.delete(`/api/appointments/${id}`, appointment).then((res) => {
+      let newDays = spotsRemaining(appointments);
+      setState({ ...state, appointments, days: newDays });
+      return res;
+    });
   };
 
   return { state, setState, setDay, bookInterview, cancelInterview };

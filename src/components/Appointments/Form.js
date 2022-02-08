@@ -27,7 +27,7 @@ export default function Form(props) {
         <form autoComplete="off" onSubmit={(event) => event.preventDefault()}>
           <input
             className="appointment__create-input text--semi-bold"
-            name=""
+            name={student}
             type="text"
             placeholder="Enter Student Name"
             onChange={(e) => setStudent(e.target.value)}
@@ -38,7 +38,7 @@ export default function Form(props) {
         <section className="appointment__validation">{error}</section>
         <InterviewerList
           interviewers={props.interviewers}
-          onChange={(id) => setInterviewer(id)}
+          onChange={setInterviewer}
           value={interviewer}
         />
       </section>
