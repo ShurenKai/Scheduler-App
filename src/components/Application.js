@@ -95,5 +95,3 @@ export default function Application() {
     </main>
   );
 }
-
-// {(setDay={setDay})}
